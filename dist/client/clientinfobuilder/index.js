@@ -54,9 +54,9 @@ var ClientInfoBuilder = /** @class */ (function () {
             }
             totalIdle += cpu.times.idle;
         }
-        cputype.idle = totalIdle / cpus.length;
-        cputype.total = totalTick / cpus.length;
-        cputype.idleper = cputype.idle / cputype.total;
+        var idle = totalIdle / cpus.length;
+        var total = totalTick / cpus.length;
+        cputype.idleper = idle / total;
         cputype.inuseper = 1.0 - cputype.idleper;
         return cputype;
     };
