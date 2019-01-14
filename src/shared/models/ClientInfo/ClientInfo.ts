@@ -11,5 +11,6 @@ export class ClientInfo {
     public totalmemory = 0,
     public cpu = new ClientInfoCpu(),
     public loadavg: number[] = [],
+    public apiport = 0,
   ) {}
 }

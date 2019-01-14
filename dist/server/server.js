@@ -1,63 +1,60 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 // lib/app.ts
-var express = require("express");
-var ClientInfo_1 = require("../shared/models/ClientInfo/ClientInfo");
-var os_1 = __importDefault(require("os"));
-var ClientInfoIpMac_1 = require("../shared/models/ClientInfo/ClientInfoIpMac");
-var ServerOs = /** @class */ (function () {
-    function ServerOs() {
-    }
-    ServerOs.prototype.Ips = function () {
-        var cip = [];
-        var nit = os_1.default.networkInterfaces();
-        Object.keys(nit)
-            .map(function (f) { return nit[f]; })
-            .forEach(function (ff) {
-            var filtered = ff.filter(function (tr) { return tr.internal === false && tr.family === 'IPv4'; });
-            if (filtered && filtered.length > 0) {
-                var itm_1 = filtered[0];
-                if (cip.filter(function (ft) { return ft.ip === itm_1.address; }).length === 0) {
-                    cip.push(new ClientInfoIpMac_1.ClientInfoIpMac(filtered[0].address, filtered[0].mac));
-                }
-            }
-        });
-        return cip;
-    };
-    return ServerOs;
-}());
-exports.ServerOs = ServerOs;
+const express = require("express");
+const ClientInfo_1 = require("../shared/models/ClientInfo/ClientInfo");
+const PostWhoResult_1 = require("../shared/models/Messages/PostWhoResult");
+const ClientList_1 = require("./ClientList/ClientList");
+const ServerConfig_1 = require("./ServerConfig");
+const ServerOs_1 = require("./ServerOs");
 // Create a new express application instance
-var app = express();
-var clients = [];
-var index = 0;
+const app = express();
+const clientlist = new ClientList_1.ClientList();
+const clients = [];
+let index = 0;
 for (index; index < 20; index++) {
-    var cl = new ClientInfo_1.ClientInfo("fake " + index);
+    const cl = new ClientInfo_1.ClientInfo(`fake ${index}`);
     clients.push(cl);
 }
-app.get('/', function (req, res) {
+app.use(express.json());
+app.get('/', (req, res) => {
     res.send('Hello World!');
 });
-app.get('/sh', function (req, res) {
+app.get('/sh', (req, res) => {
     res.send({ data: clients });
 });
-app.get('/who', function (req, res) {
-    res.send({ ip: { data: (new ServerOs().Ips()[0].ip) } });
+app.get('/who', (req, res) => {
+    console.log(req);
+    res.send({
+        ip: { data: new ServerOs_1.ServerOs().Ips()[0].ip, clients: clients.map(m => m.name) }
+    });
 });
-app.get('/clients', function (req, res) {
+app.post('/who', (req, res) => {
+    const wi = req.body;
+    if (wi.hashcode && wi.hashcode === ServerConfig_1.serverConfig.securityHash) {
+        clientlist.updateOrAdd(wi);
+        res.send({ result: new PostWhoResult_1.PostWhoResult(new ServerOs_1.ServerOs().Ips()[0].ip) });
+        const find = clientlist.clients.find(f => f.name === wi.clientInfo.name);
+        console.log(find.api);
+        if (find) {
+            let adrs = `http://${(ServerConfig_1.serverConfig.localMask ? ServerConfig_1.serverConfig.localMask : find.ip)}:${wi.apiPort}/`;
+        }
+    }
+    else {
+        console.log('bad hash');
+    }
+});
+app.get('/clients', (req, res) => {
     console.log(clients);
     res.send(clients);
 });
-app.listen(3000, function () {
+app.listen(3000, () => {
     console.log('Example app listening on port 3000!');
 });
 function dosomething() {
-    var si = new ServerOs();
-    console.log(si.Ips());
-    setTimeout(function () {
+    const si = new ServerOs_1.ServerOs();
+    console.log(clientlist.clients);
+    setTimeout(() => {
         dosomething();
     }, 5000);
 }
