@@ -1,1 +1,1 @@
-{"version":3,"file":"PiMonitorFetch.js","sourceRoot":"","sources":["../../../src/client/PiMonitorFetch/PiMonitorFetch.ts"],"names":[],"mappings":";;AAEA,6DAA0D;AAE1D,MAAa,cAAe,SAAQ,uCAAkB;IAC3C,GAAG;QACN,MAAM,IAAI,KAAK,CAAC,yBAAyB,CAAC,CAAC;IAC/C,CAAC;CAEJ;AALD,wCAKC"}
+{"version":3,"file":"PiMonitorFetch.js","sourceRoot":"","sources":["../../../src-api/client/PiMonitorFetch/PiMonitorFetch.ts"],"names":[],"mappings":";;AAEA,6DAA0D;AAE1D,MAAa,cAAe,SAAQ,uCAAkB;IAC3C,GAAG;QACN,MAAM,IAAI,KAAK,CAAC,yBAAyB,CAAC,CAAC;IAC/C,CAAC;CAEJ;AALD,wCAKC"}

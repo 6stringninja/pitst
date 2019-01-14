@@ -35,15 +35,18 @@ export abstract class PostBase<TBody, TResult> {
       (error, res, body) => {
         if (error) {
           console.error(error);
-          if (this.observererror ){
+          if (this.observererror ) {
             this.observererror.onNext(
               new ErrorMessage(this.errorCode, this.errorMessage, error),
             );
           }
-         
+
           return;
         }
+      if(this.observer){
         this.observer.onNext(this.mapResult(res, body));
+      }
+
       //  console.log(`statusCode: ${res.statusCode}`);
        // console.log(body);
       },

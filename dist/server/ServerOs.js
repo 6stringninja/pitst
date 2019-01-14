@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const os_1 = __importDefault(require("os"));
 const ClientInfoIpMac_1 = require("../shared/models/ClientInfo/ClientInfoIpMac");
-const ServerConfig_1 = require("./ServerConfig");
+const ServerConfig_1 = require("../shared/ServerConfig");
 class ServerOs {
     Ips(filtr = ServerConfig_1.serverConfig.ipfilter) {
         const cip = [];

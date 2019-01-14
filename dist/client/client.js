@@ -12,7 +12,7 @@ app.use(express.json());
 const PostWho_1 = require("./PostWho");
 exports.clientConfig = new ClientConfig_1.ClientConfig();
 const pw = new PostWho_1.PostWho();
-pw.result$.subscribe(s => {
+pw.result$.subscribe((s) => {
     //  console.log('who res');
     // console.log(s);
 });
@@ -23,12 +23,12 @@ const inj = new ClientInfoBuilderService_1.ClientInfoBuilderService();
 const pfs = new PiMonitorFetchService_1.PiMonitorFetchService();
 let pistat;
 pfs.override(new PiMonitorFetchTest_1.PiMonitorFetchTest());
-pfs.service.result$.subscribe(s => (pistat = s));
+pfs.service.result$.subscribe((s) => (pistat = s));
 function dosomething() {
     pfs.service.get();
     const c = inj.service.get();
     c.name = 'Test2';
-    const pwi = new PostWhoInput_1.PostWhoInput(c, pistat);
+    const pwi = new PostWhoInput_1.PostWhoInput(c, pistat, exports.clientConfig.apiport);
     pwi.hashcode = exports.clientConfig.securityHash;
     pwi.apiPort = pwi.clientInfo.apiport = exports.clientConfig.apiport;
     pw.post(pwi);
@@ -55,7 +55,7 @@ let outp = ';';
 tst.run(testc, outp);
 console.log(outp);*/
 app.get('/', (req, res) => {
-    console.log("server req");
+    console.log('server req');
     res.send('Hello Server!');
 });
 app.listen(exports.clientConfig.apiport, () => {

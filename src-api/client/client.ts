@@ -14,14 +14,14 @@ app.use(express.json());
 // tslint:disable-next-line:ordered-imports
 import {
   CommandRunner,
-  CommandRunnerCommand
+  CommandRunnerCommand,
 } from './CommandRunner/CommandRunner';
 import { PostWho } from './PostWho';
 
 export const clientConfig = new ClientConfig();
 
 const pw = new PostWho();
-pw.result$.subscribe(s => {
+pw.result$.subscribe((s) => {
   //  console.log('who res');
   // console.log(s);
 });
@@ -35,16 +35,16 @@ const pfs: PiMonitorFetchService = new PiMonitorFetchService();
 let pistat: PiStat;
 
 pfs.override(new PiMonitorFetchTest());
-pfs.service.result$.subscribe(s => (pistat = s));
+pfs.service.result$.subscribe((s) => (pistat = s));
 
 export function dosomething() {
   pfs.service.get();
   const c = inj.service.get();
   c.name = 'Test2';
-  const pwi = new PostWhoInput(c, pistat);
+  const pwi = new PostWhoInput(c, pistat,clientConfig.apiport);
   pwi.hashcode = clientConfig.securityHash;
-   pwi.apiPort = pwi.clientInfo.apiport = clientConfig.apiport;
- 
+  pwi.apiPort = pwi.clientInfo.apiport = clientConfig.apiport;
+
   pw.post(pwi);
   //  cb.get();
   // console.log(inj.service.get());
@@ -68,7 +68,7 @@ let outp = ';';
 tst.run(testc, outp);
 console.log(outp);*/
 app.get('/', (req: express.Request, res: express.Response) => {
-  console.log("server req");
+  console.log('server req');
   res.send('Hello Server!');
 });
 

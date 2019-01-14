@@ -4,9 +4,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const ClientInfo_1 = require("../shared/models/ClientInfo/ClientInfo");
 const PostWhoResult_1 = require("../shared/models/Messages/PostWhoResult");
-const ClientList_1 = require("./ClientList/ClientList");
-const ServerConfig_1 = require("./ServerConfig");
+const ServerConfig_1 = require("../shared/ServerConfig");
 const ServerOs_1 = require("./ServerOs");
+const ClientList_1 = require("../shared/ClientList/ClientList");
 // Create a new express application instance
 const app = express();
 const clientlist = new ClientList_1.ClientList();
@@ -20,8 +20,8 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
-app.get('/sh', (req, res) => {
-    res.send({ data: clients });
+app.get('/api/sh', (req, res) => {
+    res.send(clientlist);
 });
 app.get('/who', (req, res) => {
     console.log(req);
@@ -32,12 +32,13 @@ app.get('/who', (req, res) => {
 app.post('/who', (req, res) => {
     const wi = req.body;
     if (wi.hashcode && wi.hashcode === ServerConfig_1.serverConfig.securityHash) {
+        console.log(wi.clientInfo.name);
         clientlist.updateOrAdd(wi);
         res.send({ result: new PostWhoResult_1.PostWhoResult(new ServerOs_1.ServerOs().Ips()[0].ip) });
         const find = clientlist.clients.find(f => f.name === wi.clientInfo.name);
         console.log(find.api);
         if (find) {
-            let adrs = `http://${(ServerConfig_1.serverConfig.localMask ? ServerConfig_1.serverConfig.localMask : find.ip)}:${wi.apiPort}/`;
+            const adrs = `http://${ServerConfig_1.serverConfig.localMask ? ServerConfig_1.serverConfig.localMask : find.ip}:${wi.apiPort}/`;
         }
     }
     else {
@@ -53,7 +54,7 @@ app.listen(3000, () => {
 });
 function dosomething() {
     const si = new ServerOs_1.ServerOs();
-    console.log(clientlist.clients);
+    console.log(clientlist.clients.map(c => c.name));
     setTimeout(() => {
         dosomething();
     }, 5000);

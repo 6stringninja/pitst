@@ -27,7 +27,9 @@ class PostBase {
                 }
                 return;
             }
-            this.observer.onNext(this.mapResult(res, body));
+            if (this.observer) {
+                this.observer.onNext(this.mapResult(res, body));
+            }
             //  console.log(`statusCode: ${res.statusCode}`);
             // console.log(body);
         });

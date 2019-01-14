@@ -10,7 +10,7 @@ export class ClientLite {
     public updated = new Date(),
     public times = 0,
     public pistat: PiStat = null,
-    public api: = '',
+    public api  = '',
   ) {}
 }
 // tslint:disable-next-line:max-classes-per-file

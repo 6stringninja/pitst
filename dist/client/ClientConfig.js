@@ -5,6 +5,7 @@ class ClientConfig {
         this.ipfilter = '192.168.1';
         this.securityHash = 'abc123';
         this.apiport = 3003;
+        this.name = 'client';
     }
 }
 exports.ClientConfig = ClientConfig;

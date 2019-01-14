@@ -1,1 +1,1 @@
-{"version":3,"file":"ClientInfoIpMac.js","sourceRoot":"","sources":["../../../../src/shared/models/ClientInfo/ClientInfoIpMac.ts"],"names":[],"mappings":";;AAAA,MAAa,eAAe;IACxB,YAAmB,KAAa,EAAE,EAAS,MAAc,EAAE;QAAxC,OAAE,GAAF,EAAE,CAAa;QAAS,QAAG,GAAH,GAAG,CAAa;IAAI,CAAC;CACnE;AAFD,0CAEC"}
+{"version":3,"file":"ClientInfoIpMac.js","sourceRoot":"","sources":["../../../../src-api/shared/models/ClientInfo/ClientInfoIpMac.ts"],"names":[],"mappings":";;AAAA,MAAa,eAAe;IACxB,YAAmB,KAAa,EAAE,EAAS,MAAc,EAAE;QAAxC,OAAE,GAAF,EAAE,CAAa;QAAS,QAAG,GAAH,GAAG,CAAa;IAAI,CAAC;CACnE;AAFD,0CAEC"}

@@ -18,7 +18,10 @@ export class CommandRunnerCommand {
 // tslint:disable-next-line:max-classes-per-file
 export class CommandRunner {
   public currentCommand: CommandRunnerCommand;
-  public async run( cmd: CommandRunnerCommand, output:   = ''): string {
+  // tslint:disable-next-line:typedef-whitespace
+  // tslint:disable-next-line:whitespace
+  // tslint:disable-next-line:typedef-whitespace
+  public async run( cmd: CommandRunnerCommand, output   = ''): Promise<string> {
     try {
       const result = await spawn(cmd.command, cmd.params, { capture: ['stdout', 'stderr'] });
       console.log('[spawn] stdout: ', result.stdout.toString());

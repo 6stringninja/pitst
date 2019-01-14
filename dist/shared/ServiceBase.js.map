@@ -1,1 +1,1 @@
-{"version":3,"file":"ServiceBase.js","sourceRoot":"","sources":["../../src/shared/ServiceBase.ts"],"names":[],"mappings":";;AAEA,MAAsB,WAAW;IAGtB,QAAQ,CAAC,OAAU;QACtB,IAAI,CAAC,OAAO,GAAG,OAAa,CAAC;IACjC,CAAC;CACJ;AAND,kCAMC"}
+{"version":3,"file":"ServiceBase.js","sourceRoot":"","sources":["../../src-api/shared/ServiceBase.ts"],"names":[],"mappings":";;AAEA,MAAsB,WAAW;IAGtB,QAAQ,CAAC,OAAU;QACtB,IAAI,CAAC,OAAO,GAAG,OAAa,CAAC;IACjC,CAAC;CACJ;AAND,kCAMC"}

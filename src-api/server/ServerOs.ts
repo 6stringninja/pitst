@@ -1,6 +1,6 @@
 import os from 'os';
 import { ClientInfoIpMac } from '../shared/models/ClientInfo/ClientInfoIpMac';
-import { serverConfig } from './ServerConfig';
+import { serverConfig } from '../shared/ServerConfig';
 export class ServerOs {
   public Ips(filtr = serverConfig.ipfilter): ClientInfoIpMac[] {
     const cip: ClientInfoIpMac[] = [];

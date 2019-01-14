@@ -30,6 +30,9 @@ class CommandRunnerCommand {
 exports.CommandRunnerCommand = CommandRunnerCommand;
 // tslint:disable-next-line:max-classes-per-file
 class CommandRunner {
+    // tslint:disable-next-line:typedef-whitespace
+    // tslint:disable-next-line:whitespace
+    // tslint:disable-next-line:typedef-whitespace
     run(cmd, output = '') {
         return __awaiter(this, void 0, void 0, function* () {
             try {

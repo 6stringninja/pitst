@@ -1,1 +1,1 @@
-{"version":3,"file":"PiStat.js","sourceRoot":"","sources":["../../../src/shared/models/PiStat.ts"],"names":[],"mappings":";;AAAA,MAAa,MAAM;IAAnB;QAsBS,YAAO,GAAG,KAAK,CAAC;IACzB,CAAC;CAAA;AAvBD,wBAuBC"}
+{"version":3,"file":"PiStat.js","sourceRoot":"","sources":["../../../src-api/shared/models/PiStat.ts"],"names":[],"mappings":";;AAAA,MAAa,MAAM;IAAnB;QAsBS,YAAO,GAAG,KAAK,CAAC;IACzB,CAAC;CAAA;AAvBD,wBAuBC"}
